@@ -1,40 +1,54 @@
-// Number Guessing Game between 1-100.
-
-
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-public class GuessNumGame {
-	public static void main(String[] args) {
-		Random rand = new Random();
-		int numToGuess = rand.nextInt(100);
-		Scanner sc = new Scanner(System.in);
-		int guess;
-		int k=5;
-		boolean win = false;
-		while(k>0)
-		{
-			System.out.println("Guess num from 1 to 100 \n You have 5 tries ");
-			guess = sc.nextInt();
-		
-			if(guess == numToGuess){
-				win = true;
-				System.out.println("Congrats you won");
-				break;
-				
-				}
-				else if(guess<numToGuess){
-					System.out.println("The guess is too low  \n You have " + (k-1)+"tries left");
-					                   k--;
-					}
-					else if(guess>numToGuess){
-						System.out.println("The guess is too high\nYou have" + (k-1)+"tries left");                   
-						k--;
-						}
-						
-		}
-  
-            System.out.println("Sorry you lost");
-			System.out.println("The num was"+ numToGuess);
-			
-	}
-}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in); // Scanner class
+        ArrayList<String> list = new ArrayList<>();// arraylist class
+
+        String name[] ={"Buggati","RollsRoyce","Ferari","Lambhorgini",};// random string generator
+        Random obj = new Random();
+        int random = obj.nextInt(name.length);
+        String guess_name = name[random];
+
+        for (int i = 0 ; i<guess_name.length();i++)  // print arraylist
+        {
+            list.add("_");
+        }
+        System.out.println(list);
+
+
+        for (int j=0;j<guess_name.length()+10; j++)  // this program replace the "_" with guess_character
+        {
+            System.out.println("enter the character");
+            String guess_character = sc.next();
+            if (guess_name.contains(guess_character))
+            {
+                System.out.println("correct");
+                for (int k=0;k<guess_name.length();k++) // this program is solve the issue "occurance of similar character"
+                {
+                    if (guess_name.charAt(k)==guess_character.charAt(0))
+                    {
+                        list.set(k,guess_character);
+                    }
+                }
+                System.out.println(list); // print replaced arraylist
+            }
+            else
+            {
+                System.out.println("incorrect");
+            }
+            if (list.contains("_"))
+            {
+            }
+            else {
+                System.out.println("you win");
+                break;
+            }
+
+        }
+
+
+
+    }}
